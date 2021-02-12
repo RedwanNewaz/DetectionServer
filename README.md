@@ -1,4 +1,4 @@
-#Detection Server
+# Detection Server
 
 A simple flask server to communicate with deep learning module.
 Suppose that you have an object detection model where you want to send some input images via http network.
