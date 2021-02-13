@@ -8,7 +8,7 @@ This package will allow you to do that with couple of line of codes.
 ## How to install 
 To install this library using pip 
 ```bash 
-pip3 install git+https://github.com/RedwanNewaz/DetectionServer.git@2e180c1671fd1398fba011cd6ef41626b7eb3563
+pip3 install git+https://github.com/RedwanNewaz/DetectionServer.git
 ```
 
 ## Quick Start 
@@ -19,9 +19,10 @@ from detection_server import DetectionServer
 
 def my_module(image):
     return {'img': 'received {}'.format(image.shape)}
-detector = DetectionServer(my_module)
+detector = DetectionServer(my_module, addr="0.0.0.0", port=5000)
 detector.start()
 ```
+Note that the if you want to use the default __ip address__ and __port__, you can skip those arguments.
 
 On the client side, you have two options: either you can use curl to send an image or 
 you can use python library requests to send an image.

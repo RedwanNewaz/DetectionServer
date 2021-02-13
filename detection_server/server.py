@@ -51,15 +51,16 @@ class DetectionServer(object):
     """
     app = Flask(__name__)
     api = Api(app)
-    def __init__(self,module, addr="0.0.0.0"):
+    def __init__(self,module, addr="0.0.0.0", port=5000):
         global runnable
         runnable = module
         self.address = addr
+        self.port = port
         self.api.add_resource(ImageServer, '/')
 
     def start(self, debug=True):
         "This function will start the flask server"
-        self.app.run(host=self.address, debug=debug)
+        self.app.run(host=self.address, port=self.port, debug=debug)
 
 
 
