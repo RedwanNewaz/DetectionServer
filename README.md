@@ -5,14 +5,22 @@ Suppose that you have an object detection model where you want to send some inpu
 You can have multiple networks and you want them as a service to your client node. 
 This package will allow you to do that with couple of line of codes. 
 
+## How to install 
+To install this library using pip 
+```bash 
+pip3 install git+https://github.com/RedwanNewaz/DetectionServer.git@2e180c1671fd1398fba011cd6ef41626b7eb3563
+```
+
 ## Quick Start 
 To start an object detection server, you can replace my_module function with your object detection model. 
 
 ```python 
-    def my_module(image):
-        return {'img': 'received {}'.format(image.shape)}
-    detector = DetectionServer(my_module)
-    detector.start()
+from detection_server import DetectionServer
+
+def my_module(image):
+    return {'img': 'received {}'.format(image.shape)}
+detector = DetectionServer(my_module)
+detector.start()
 ```
 
 On the client side, you have two options: either you can use curl to send an image or 
@@ -28,7 +36,9 @@ you can use python library requests to send an image.
 
 ### Sending image via requests
 ```python
-    OBJ_DETECTOR_SERVER = 'http://0.0.0.0:5000/'
-    frame = cv2.imread("<my_image.jpg>")
-    data = send_image(OBJ_DETECTOR_SERVER, frame)
+from detection_server import send_image
+
+OBJ_DETECTOR_SERVER = 'http://0.0.0.0:5000/'
+frame = cv2.imread("<my_image.jpg>")
+data = send_image(OBJ_DETECTOR_SERVER, frame)
 ```
